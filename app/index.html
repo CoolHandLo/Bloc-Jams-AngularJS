@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="blocJams">
-    <head lang="en">
+    <head>
         <title>Bloc Jams</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
     </head>
     <body class="landing">
-      {{ 2 + 2 }}
+
         <nav class="navbar">
             <a href="index.html" class="logo">
                 <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
@@ -23,7 +23,10 @@
             </div>
         </nav>
 
+        <ui-view></ui-view>
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
         <script src="scripts/app.js"></script>
     </body>
 </html>
