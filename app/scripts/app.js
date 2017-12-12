@@ -2,7 +2,9 @@
   function config($stateProvider, $locationProvider) {
     $locationProvider
       .html5Mode({
+        // disables hashbang url
         enabled: true,
+
         requireBase: false
       });
 
