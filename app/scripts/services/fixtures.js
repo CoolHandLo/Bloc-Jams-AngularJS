@@ -32,10 +32,16 @@
        ]
     };
 
+    // @function getAlbum
+    // @desc
+    // @parm
     Fixtures.getAlbum = function() {
       return albumPicasso;
     }
 
+    // @function getCollection
+    // @desc
+    // @parm
     Fixtures.getCollection = function(numberOfAlbums) {
       let array = [];
       for (var i = 0; i < numberOfAlbums; i++) {
