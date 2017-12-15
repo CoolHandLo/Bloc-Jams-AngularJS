@@ -19,7 +19,7 @@
     var setSong = function(song) {
       if (currentBuzzObject) {
         currentBuzzObject.stop();
-        currentSong.playing = null;
+        SongPlayer.currentSong.playing = null;
       }
 
       currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -91,6 +91,7 @@
         playSong(song);
       }
     };
+
 
     return SongPlayer;
   };
