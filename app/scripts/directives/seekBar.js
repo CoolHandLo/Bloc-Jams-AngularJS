@@ -1,5 +1,9 @@
 (function() {
   function seekBar($document) {
+
+    // @function calculatePercent
+    // @desc
+    // @param
     var calculatePercent = function(seekBar, event) {
       var offsetX = event.pageX - seekBar.offset().left;
       var seekBarWidth = seekBar.width();
@@ -20,16 +24,25 @@
         scope.value = 0;
         scope.max = 100;
 
+        // @desc
+        // @type
         var seekBar = $(element);
 
+        // @desc
+        // @type
         attributes.$observe('value', function(newValue) {
           scope.value = newValue;
         });
 
+        // @desc
+        // @type
         attributes.$observe('max', function(newValue) {
           scope.max = newValue;
         });
 
+        // @function percentString
+        // @desc
+        // @param
         var percentString = function () {
           var value = scope.value;
           var max = scope.max;
@@ -37,40 +50,55 @@
           return percent + "%";
         };
 
+        // @function notifyOnChange
+        // @desc
+        // @param
         var notifyOnChange = function(newValue) {
           if (typeof scope.onChange === 'function') {
             scope.onChange({value: newValue});
           }
         };
 
+        // @function fillStyle
+        // @desc
+        // @param
         scope.fillStyle = function() {
           return {width: percentString()};
         };
 
+        // @function onClickSeekBar
+        // @desc
+        // @param
         scope.onClickSeekBar = function(event) {
-             var percent = calculatePercent(seekBar, event);
-             scope.value = percent * scope.max;
-             notifyOnChange(scope.value);
-         };
+          var percent = calculatePercent(seekBar, event);
+          scope.value = percent * scope.max;
+          notifyOnChange(scope.value);
+        };
 
-         scope.trackThumb = function() {
-           $document.bind('mousemove.thumb', function(event) {
-             var percent = calculatePercent(seekBar, event);
-             scope.$apply(function() {
-               scope.value = percent * scope.max;
-               notifyOnChange(scope.value);
-             });
-           });
+        // @function trackThumb
+        // @desc
+        // @param
+        scope.trackThumb = function() {
+          $document.bind('mousemove.thumb', function(event) {
+            var percent = calculatePercent(seekBar, event);
+            scope.$apply(function() {
+              scope.value = percent * scope.max;
+              notifyOnChange(scope.value);
+            });
+          });
 
-           $document.bind('mouseup.thumb', function() {
-             $document.unbind('mousemove.thumb');
-             $document.unbind('mouseup.thumb');
-           });
-         };
+          $document.bind('mouseup.thumb', function() {
+            $document.unbind('mousemove.thumb');
+            $document.unbind('mouseup.thumb');
+          });
+        };
 
-         scope.thumbStyle = function() {
-           return {left: percentString()};
-         };
+        // @function thumbStyle
+        // @desc
+        // @param
+        scope.thumbStyle = function() {
+          return {left: percentString()};
+        };
       }
     };
   }

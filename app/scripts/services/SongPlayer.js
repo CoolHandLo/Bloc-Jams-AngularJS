@@ -33,6 +33,12 @@
         });
       });
 
+      currentBuzzObject.bind('volumechange', function() {
+        $rootScope.$apply(function() {
+          SongPlayer.volume = currentBuzzObject.getVolume();
+        });
+      });
+
       SongPlayer.currentSong = song;
     };
 
@@ -64,19 +70,13 @@
     // @type {object}
     SongPlayer.currentSong = null;
 
-
     // @desc Current playback time (in seconds) of currently playing song
     // @type {Number}
     SongPlayer.currentTime = null;
 
-    // @function setCurrentTime
-    // @desc Set current time (in seconds) of currently playing song
-    // @param {Number} time
-    SongPlayer.setCurrentTime = function(time) {
-      if (currentBuzzObject) {
-        currentBuzzObject.setTime(time);
-      }
-    };
+    // @desc Current playback volume
+    // @type {number}
+    SongPlayer.volume = 80;
 
     // @function play
     // @desc Play current or new song
@@ -111,8 +111,6 @@
 
       if (currentSongIndex < 0) {
         stopSong(song);
-        // currentBuzzObject.stop();
-        // SongPlayer.currentSong.playing = null;
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
@@ -136,6 +134,24 @@
       }
     };
 
+    // @function setCurrentTime
+    // @desc Set current time (in seconds) of currently playing song
+    // @param {Number} time
+    SongPlayer.setCurrentTime = function(time) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setTime(time);
+      }
+    };
+
+    // @function setVolume
+    // @desc Set volume of currently playing song
+    // @parm {number}
+    SongPlayer.setCurrentVolume = function(volume) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(volume);
+      }
+    };
+
     return SongPlayer;
   };
 
@@ -143,3 +159,4 @@
     .module('blocJams')
     .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
+// songPlayer service
