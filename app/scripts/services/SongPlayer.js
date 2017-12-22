@@ -33,12 +33,6 @@
         });
       });
 
-      // currentBuzzObject.bind('volumechange', function() {
-      //   $rootScope.$apply(function() {
-      //     SongPlayer.volume = currentBuzzObject.getVolume();
-      //   });
-      // });
-
       SongPlayer.currentSong = song;
     };
 
